@@ -1,8 +1,8 @@
-//require('dns').setServers(['8.8.8.8', '8.8.4.4']);
+require('dns').setServers(['8.8.8.8', '8.8.4.4']);
 
 'use strict';
 
-//require('dotenv').config();
+require('dotenv').config();
 
 const app = require('./app');
 const connectDB = require('./config/db');
