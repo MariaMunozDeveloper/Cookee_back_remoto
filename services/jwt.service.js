@@ -24,7 +24,7 @@ exports.createRefreshToken = function (user) {
     };
 
     return jwtService.sign(payload, refreshSecret, {
-        expiresIn: '7d'
+        expiresIn: '1d'
     });
 };
 
