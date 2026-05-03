@@ -11,7 +11,7 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.put('/update', authMiddleware.ensureAuth, userController.updateUser);
 router.get('/', userController.listUsers);
-router.get('/user/:id', authMiddleware.ensureAuth, userController.getUserById);
+router.get('/:id', authMiddleware.ensureAuth, userController.getUserById);
 router.post('/upload-avatar', authMiddleware.ensureAuth, uploadMiddleware.single('avatar'), userController.uploadAvatar);
 router.get('/counters', authMiddleware.ensureAuth, userController.getCounters);
 router.get('/counters/:id', authMiddleware.ensureAuth, userController.getCounters);
