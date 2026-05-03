@@ -180,9 +180,6 @@ userController.listUsers = async (req, res) => {
             ? await followUserIds(miId)
             : { following: [], followed: [] };
 
-        console.log('miId:', miId);
-        console.log('followInfo:', followInfo);
-
         return res.status(200).json({
             status: true,
             users: result.docs,
