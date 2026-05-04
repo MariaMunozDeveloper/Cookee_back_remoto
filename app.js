@@ -7,10 +7,6 @@ const serveStatic = require('serve-static');
 
 const app = express();
 
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' });
-});
-
 const userRoutes = require('./routes/user.route');
 const followRoutes = require('./routes/follow.route');
 const publicationRoutes = require('./routes/publication.route');
@@ -23,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cors());
+
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
 
 
 // hacer pública la carpeta uploads
