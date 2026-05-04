@@ -24,7 +24,6 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
 });
 
-
 // hacer pública la carpeta uploads
 app.use('/uploads', serveStatic(path.join(__dirname, 'uploads')));
 
