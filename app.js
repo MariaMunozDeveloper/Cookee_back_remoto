@@ -7,6 +7,10 @@ const serveStatic = require('serve-static');
 
 const app = express();
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
 const userRoutes = require('./routes/user.route');
 const followRoutes = require('./routes/follow.route');
 const publicationRoutes = require('./routes/publication.route');
