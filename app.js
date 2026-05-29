@@ -18,7 +18,10 @@ const adminRoutes = require('./routes/admin.route');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://cookee-front-remoto.vercel.app',
+    credentials: true
+}));
 
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
