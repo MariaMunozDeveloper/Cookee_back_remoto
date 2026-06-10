@@ -14,12 +14,25 @@ const messageRoutes = require('./routes/message.route');
 const commentRoutes = require('./routes/comment.route');
 const favoriteRoutes = require('./routes/favorite.route');
 const adminRoutes = require('./routes/admin.route');
+const cookieParser = require('cookie-parser');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
+
+const allowedOrigins = [
+    'https://cookee-front-remoto.vercel.app',
+    'http://localhost:4200'
+];
 
 app.use(cors({
-    origin: 'https://cookee-front-remoto.vercel.app',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('No permitido por CORS'));
+        }
+    },
     credentials: true
 }));
 

@@ -5,28 +5,12 @@ const jwtService = require('../services/jwt.service');
 
 const ensureAuth = (req, res, next) => {
     try {
-        const authHeader = req.headers.authorization;
-
-        if (!authHeader) {
-            return res.status(401).json({
-                status: false,
-                message: 'Falta la cabecera de autenticación'
-            });
-        }
-
-        if (!authHeader.startsWith('Bearer ')) {
-            return res.status(401).json({
-                status: false,
-                message: 'Formato de token inválido'
-            });
-        }
-
-        const token = authHeader.split(' ')[1];
+        const token = req.cookies.accessToken;
 
         if (!token) {
             return res.status(401).json({
                 status: false,
-                message: 'Token no proporcionado'
+                message: 'No autenticado'
             });
         }
 

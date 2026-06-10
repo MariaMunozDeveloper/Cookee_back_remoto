@@ -104,12 +104,24 @@ userController.login = async (req, res) => {
         const userWithoutPassword = user.toObject();
         delete userWithoutPassword.password;
 
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 24 * 60 * 60 * 1000
+        });
+
         return res.status(200).json({
             status: true,
             message: 'Login correcto',
-            user: userWithoutPassword,
-            accessToken,
-            refreshToken
+            user: userWithoutPassword
         });
 
     } catch (error) {
